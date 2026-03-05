@@ -1,0 +1,49 @@
+name: EmdashChat
+options:
+  bundleIdPrefix: com.ryan
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+  indentWidth: 4
+  tabWidth: 4
+
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: "2.0.0"
+  # Uncomment when ready to integrate the real Matrix SDK (~200MB binary download):
+  # MatrixRustSDK:
+  #   url: https://github.com/matrix-org/matrix-rust-components-swift
+  #   from: "1.0.0"
+
+targets:
+  EmdashChat:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: EmdashChat
+        createIntermediateGroups: true
+    dependencies:
+      - package: KeyboardShortcuts
+        product: KeyboardShortcuts
+      # - package: MatrixRustSDK
+      #   product: MatrixRustSDK
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryan.emdashchat
+        SWIFT_VERSION: "5.9"
+        ENABLE_HARDENED_RUNTIME: YES
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: EmdashChat
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2024 Ryan Tiffany. All rights reserved."
+        INFOPLIST_KEY_LSMinimumSystemVersion: "14.0"
+        INFOPLIST_KEY_NSPrincipalClass: NSApplication
+        CODE_SIGN_ENTITLEMENTS: EmdashChat/EmdashChat.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+      configs:
+        Debug:
+          ENABLE_HARDENED_RUNTIME: NO

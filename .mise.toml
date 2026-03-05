@@ -1,0 +1,26 @@
+[env]
+DEVELOPER_DIR = "/Applications/Xcode.app/Contents/Developer"
+
+[tasks.gen]
+description = "Regenerate Xcode project from project.yml"
+run = "xcodegen"
+
+[tasks.build]
+description = "Build EmdashChat"
+run = "xcodebuild -scheme EmdashChat -destination 'platform=macOS' build"
+
+[tasks.test]
+description = "Run tests"
+run = "xcodebuild -scheme EmdashChat -destination 'platform=macOS' test"
+
+[tasks.clean]
+description = "Clean build artifacts"
+run = "xcodebuild clean -scheme EmdashChat"
+
+[tasks.open]
+description = "Open in Xcode"
+run = "open EmdashChat.xcodeproj"
+
+[tasks.archive]
+description = "Archive for distribution"
+run = "xcodebuild archive -scheme EmdashChat -archivePath build/EmdashChat.xcarchive"
