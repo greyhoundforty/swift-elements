@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0FBCAE86C7F78CFF2432D0CD /* BubbleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4A8A1A7A8D221FF99E8DD /* BubbleTheme.swift */; };
+		109222DCAA9D91B554D4B896 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B7D7570E9FA33158DA5F6A /* SettingsView.swift */; };
+		15D5A5E9E03E710D5C9B16AF /* GIFProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B287EF9B1B973D04097D9EA /* GIFProvider.swift */; };
+		2D5A62362EE8CB0A44DD86EF /* ComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BEB22C2E4F143AB88307B3 /* ComposerView.swift */; };
+		33A48090AD1AA7D3145BF58D /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876836C68949C87A6470D4A1 /* MessageListView.swift */; };
+		343C783DD943DBAAB1B0659C /* KlipyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55A398DF2DDED76B193CC10 /* KlipyService.swift */; };
+		3F24325CEED9242E68181641 /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943CC5BD6AF44B8DC6487227 /* RoomListView.swift */; };
+		4115642BF3421BCC07A4A700 /* MatrixClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A620CCAD47CC97A714A67C1A /* MatrixClient.swift */; };
+		417560A05DFEF24B954D1824 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F755CCDD1746D802C2712F /* Theme.swift */; };
+		44F29D967DC0D78761251F84 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = A535D47EB793465F51A925DB /* KeyboardShortcuts */; };
+		453DAC97BAFA6866699EB75A /* RoomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4DAEC994070683F11B2EE /* RoomRowView.swift */; };
+		4E676D74F20C086AD7F509C5 /* AnimatedGIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF206C8285375945C0C441 /* AnimatedGIFView.swift */; };
+		52DAD369D1E18E2D9D50A7C4 /* GiphyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E312FF07F2E6B8E7DE9E9B3 /* GiphyService.swift */; };
+		532FCBEFD59731F5D0E87B6A /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BAB09756D29FF8501CA38D /* MessageBubbleView.swift */; };
+		63BDBB996B203A434F050865 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F043E55A4969A5D68DA9F79 /* SyncManager.swift */; };
+		6A3AE4614E7E5FE704EFAA60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFC88AF9C6429B1537D3811 /* LoginView.swift */; };
+		71E34B94D844B6F4E3027C87 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA020B8DCA81A1A71B0FEF30 /* ChatViewModel.swift */; };
+		92E1820F4B81B64A66D880C3 /* RoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54671EF1E87BA682C51104AF /* RoomListViewModel.swift */; };
+		93DD177386BCD24A1D219D90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185F83D31D3EDC8115336AC0 /* Assets.xcassets */; };
+		9FD5754A300E8305E64F1084 /* MatrixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4C852E879BFC67E2CB661 /* MatrixUser.swift */; };
+		A34DD08DECFE3363EBEA74BF /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DD1FDF6456AEDD38C294 /* ChatView.swift */; };
+		B23A43C439FF61ED1684B2A1 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CCD8F3F4A7F4E96F5CF4FB /* AuthStore.swift */; };
+		B27BECFF329FDCCDBE98B970 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25311F0B9E5B67086F59C450 /* Message.swift */; };
+		BF0DB063616FF5CCD117AB3D /* GIFGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FDFEF4B12EFA5C7D17C4EC /* GIFGridItemView.swift */; };
+		C07BF68240485A5D90421FAB /* AdiumStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47A594CC6ADF5EF54ABEF5A /* AdiumStyle.swift */; };
+		E2D34717E513D2F4BED6B4BA /* GIFPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E34F99B578D215BB09E5577 /* GIFPickerView.swift */; };
+		E53E2B94D33601A8BA9992C4 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE97FBD71AE4E243719A802B /* Room.swift */; };
+		E7F756591D73E054E5710ED3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BD220CBB76443F4F80049 /* LoginViewModel.swift */; };
+		F1DBE933F8EE614A9B90539E /* EmdashChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C232F490EAC82C61BDE4F /* EmdashChatApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		185F83D31D3EDC8115336AC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1E312FF07F2E6B8E7DE9E9B3 /* GiphyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyService.swift; sourceTree = "<group>"; };
+		25311F0B9E5B67086F59C450 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		2AFC88AF9C6429B1537D3811 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2E34F99B578D215BB09E5577 /* GIFPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFPickerView.swift; sourceTree = "<group>"; };
+		2F043E55A4969A5D68DA9F79 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		34CCD8F3F4A7F4E96F5CF4FB /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		447C222508A5E8639982D61C /* EmdashChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmdashChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54671EF1E87BA682C51104AF /* RoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListViewModel.swift; sourceTree = "<group>"; };
+		59FDFEF4B12EFA5C7D17C4EC /* GIFGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFGridItemView.swift; sourceTree = "<group>"; };
+		5B287EF9B1B973D04097D9EA /* GIFProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFProvider.swift; sourceTree = "<group>"; };
+		61BAB09756D29FF8501CA38D /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		84DF206C8285375945C0C441 /* AnimatedGIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGIFView.swift; sourceTree = "<group>"; };
+		876836C68949C87A6470D4A1 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
+		943CC5BD6AF44B8DC6487227 /* RoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
+		A620CCAD47CC97A714A67C1A /* MatrixClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixClient.swift; sourceTree = "<group>"; };
+		AE97FBD71AE4E243719A802B /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		B2BEB22C2E4F143AB88307B3 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
+		B2F4C852E879BFC67E2CB661 /* MatrixUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUser.swift; sourceTree = "<group>"; };
+		B7A4DAEC994070683F11B2EE /* RoomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRowView.swift; sourceTree = "<group>"; };
+		C3580055DE72D2A6622D759D /* EmdashChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmdashChat.entitlements; sourceTree = "<group>"; };
+		C55A398DF2DDED76B193CC10 /* KlipyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlipyService.swift; sourceTree = "<group>"; };
+		CE4BD220CBB76443F4F80049 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D63C232F490EAC82C61BDE4F /* EmdashChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmdashChatApp.swift; sourceTree = "<group>"; };
+		E1F4A8A1A7A8D221FF99E8DD /* BubbleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTheme.swift; sourceTree = "<group>"; };
+		E9B7D7570E9FA33158DA5F6A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EB72DD1FDF6456AEDD38C294 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		F47A594CC6ADF5EF54ABEF5A /* AdiumStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdiumStyle.swift; sourceTree = "<group>"; };
+		F7F755CCDD1746D802C2712F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		FA020B8DCA81A1A71B0FEF30 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2497C964D93D559B094D1046 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F29D967DC0D78761251F84 /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		032DA4652BFAF447BC9DD123 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				AE3F8A40090CB49D2BE0BD95 /* Chat */,
+				76F79856A997255480714B45 /* GIF */,
+				7309518A64AC04418D8153E2 /* Login */,
+				A80991023279C19BB1FA82B6 /* RoomList */,
+				A5ECD8572AAB9E11DDC3C688 /* Settings */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		125B5BD382EEDC5346417C9E = {
+			isa = PBXGroup;
+			children = (
+				375A7D13064A5C708C3565A4 /* EmdashChat */,
+				AC98D5C91CEAF4FEE266CF66 /* Products */,
+			);
+			indentWidth = 4;
+			sourceTree = "<group>";
+			tabWidth = 4;
+		};
+		3614B6471CD7FF8E2EF38147 /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				34CCD8F3F4A7F4E96F5CF4FB /* AuthStore.swift */,
+				A620CCAD47CC97A714A67C1A /* MatrixClient.swift */,
+				2F043E55A4969A5D68DA9F79 /* SyncManager.swift */,
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+		375439A902B419472EC4BE84 /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				5B287EF9B1B973D04097D9EA /* GIFProvider.swift */,
+				1E312FF07F2E6B8E7DE9E9B3 /* GiphyService.swift */,
+				C55A398DF2DDED76B193CC10 /* KlipyService.swift */,
+			);
+			path = GIF;
+			sourceTree = "<group>";
+		};
+		375A7D13064A5C708C3565A4 /* EmdashChat */ = {
+			isa = PBXGroup;
+			children = (
+				185F83D31D3EDC8115336AC0 /* Assets.xcassets */,
+				C3580055DE72D2A6622D759D /* EmdashChat.entitlements */,
+				D63C232F490EAC82C61BDE4F /* EmdashChatApp.swift */,
+				60298757E7B3B4876452D38C /* Core */,
+				BD6D9542D224B67CF7748C28 /* Design */,
+				032DA4652BFAF447BC9DD123 /* Features */,
+			);
+			path = EmdashChat;
+			sourceTree = "<group>";
+		};
+		60298757E7B3B4876452D38C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				375439A902B419472EC4BE84 /* GIF */,
+				3614B6471CD7FF8E2EF38147 /* Matrix */,
+				6F254E5778BA8E030E587928 /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		6F254E5778BA8E030E587928 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B2F4C852E879BFC67E2CB661 /* MatrixUser.swift */,
+				25311F0B9E5B67086F59C450 /* Message.swift */,
+				AE97FBD71AE4E243719A802B /* Room.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7309518A64AC04418D8153E2 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2AFC88AF9C6429B1537D3811 /* LoginView.swift */,
+				CE4BD220CBB76443F4F80049 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		76F79856A997255480714B45 /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				84DF206C8285375945C0C441 /* AnimatedGIFView.swift */,
+				59FDFEF4B12EFA5C7D17C4EC /* GIFGridItemView.swift */,
+				2E34F99B578D215BB09E5577 /* GIFPickerView.swift */,
+			);
+			path = GIF;
+			sourceTree = "<group>";
+		};
+		A5ECD8572AAB9E11DDC3C688 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E9B7D7570E9FA33158DA5F6A /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A80991023279C19BB1FA82B6 /* RoomList */ = {
+			isa = PBXGroup;
+			children = (
+				943CC5BD6AF44B8DC6487227 /* RoomListView.swift */,
+				54671EF1E87BA682C51104AF /* RoomListViewModel.swift */,
+				B7A4DAEC994070683F11B2EE /* RoomRowView.swift */,
+			);
+			path = RoomList;
+			sourceTree = "<group>";
+		};
+		AC98D5C91CEAF4FEE266CF66 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				447C222508A5E8639982D61C /* EmdashChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE3F8A40090CB49D2BE0BD95 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				EB72DD1FDF6456AEDD38C294 /* ChatView.swift */,
+				FA020B8DCA81A1A71B0FEF30 /* ChatViewModel.swift */,
+				B2BEB22C2E4F143AB88307B3 /* ComposerView.swift */,
+				61BAB09756D29FF8501CA38D /* MessageBubbleView.swift */,
+				876836C68949C87A6470D4A1 /* MessageListView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BD6D9542D224B67CF7748C28 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				F47A594CC6ADF5EF54ABEF5A /* AdiumStyle.swift */,
+				E1F4A8A1A7A8D221FF99E8DD /* BubbleTheme.swift */,
+				F7F755CCDD1746D802C2712F /* Theme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		474ACC0D3F3E4A5EB4694B21 /* EmdashChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F7D19612E81DD4539DBBAD7 /* Build configuration list for PBXNativeTarget "EmdashChat" */;
+			buildPhases = (
+				C4A231625BBE3C3F763E39BC /* Sources */,
+				B0DCFC76D3A6AC2AC3CBB505 /* Resources */,
+				2497C964D93D559B094D1046 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EmdashChat;
+			packageProductDependencies = (
+				A535D47EB793465F51A925DB /* KeyboardShortcuts */,
+			);
+			productName = EmdashChat;
+			productReference = 447C222508A5E8639982D61C /* EmdashChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CFFEB8CE95EFFF17E8344F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 6909C79A967B9AA3DFD439C0 /* Build configuration list for PBXProject "EmdashChat" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 125B5BD382EEDC5346417C9E;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E766E9B7FF3F5BD15B8F3356 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				474ACC0D3F3E4A5EB4694B21 /* EmdashChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0DCFC76D3A6AC2AC3CBB505 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93DD177386BCD24A1D219D90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4A231625BBE3C3F763E39BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07BF68240485A5D90421FAB /* AdiumStyle.swift in Sources */,
+				4E676D74F20C086AD7F509C5 /* AnimatedGIFView.swift in Sources */,
+				B23A43C439FF61ED1684B2A1 /* AuthStore.swift in Sources */,
+				0FBCAE86C7F78CFF2432D0CD /* BubbleTheme.swift in Sources */,
+				A34DD08DECFE3363EBEA74BF /* ChatView.swift in Sources */,
+				71E34B94D844B6F4E3027C87 /* ChatViewModel.swift in Sources */,
+				2D5A62362EE8CB0A44DD86EF /* ComposerView.swift in Sources */,
+				F1DBE933F8EE614A9B90539E /* EmdashChatApp.swift in Sources */,
+				BF0DB063616FF5CCD117AB3D /* GIFGridItemView.swift in Sources */,
+				E2D34717E513D2F4BED6B4BA /* GIFPickerView.swift in Sources */,
+				15D5A5E9E03E710D5C9B16AF /* GIFProvider.swift in Sources */,
+				52DAD369D1E18E2D9D50A7C4 /* GiphyService.swift in Sources */,
+				343C783DD943DBAAB1B0659C /* KlipyService.swift in Sources */,
+				6A3AE4614E7E5FE704EFAA60 /* LoginView.swift in Sources */,
+				E7F756591D73E054E5710ED3 /* LoginViewModel.swift in Sources */,
+				4115642BF3421BCC07A4A700 /* MatrixClient.swift in Sources */,
+				9FD5754A300E8305E64F1084 /* MatrixUser.swift in Sources */,
+				B27BECFF329FDCCDBE98B970 /* Message.swift in Sources */,
+				532FCBEFD59731F5D0E87B6A /* MessageBubbleView.swift in Sources */,
+				33A48090AD1AA7D3145BF58D /* MessageListView.swift in Sources */,
+				E53E2B94D33601A8BA9992C4 /* Room.swift in Sources */,
+				3F24325CEED9242E68181641 /* RoomListView.swift in Sources */,
+				92E1820F4B81B64A66D880C3 /* RoomListViewModel.swift in Sources */,
+				453DAC97BAFA6866699EB75A /* RoomRowView.swift in Sources */,
+				109222DCAA9D91B554D4B896 /* SettingsView.swift in Sources */,
+				63BDBB996B203A434F050865 /* SyncManager.swift in Sources */,
+				417560A05DFEF24B954D1824 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		09489356B6FBDA8035297C42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1182BCF69AD841AE4DF3EF1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EmdashChat/EmdashChat.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EmdashChat;
+				INFOPLIST_KEY_LSMinimumSystemVersion = 14.0;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Ryan Tiffany. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.emdashchat;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		8621B84BCBD65C5ABA510BEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EmdashChat/EmdashChat.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EmdashChat;
+				INFOPLIST_KEY_LSMinimumSystemVersion = 14.0;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Ryan Tiffany. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.emdashchat;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		BA8AC1AA68354BDD2B806EBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F7D19612E81DD4539DBBAD7 /* Build configuration list for PBXNativeTarget "EmdashChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8621B84BCBD65C5ABA510BEE /* Debug */,
+				1182BCF69AD841AE4DF3EF1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6909C79A967B9AA3DFD439C0 /* Build configuration list for PBXProject "EmdashChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA8AC1AA68354BDD2B806EBF /* Debug */,
+				09489356B6FBDA8035297C42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E766E9B7FF3F5BD15B8F3356 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A535D47EB793465F51A925DB /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E766E9B7FF3F5BD15B8F3356 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1CFFEB8CE95EFFF17E8344F4 /* Project object */;
+}
