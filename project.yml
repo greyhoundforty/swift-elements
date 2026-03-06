@@ -47,3 +47,19 @@ targets:
       configs:
         Debug:
           ENABLE_HARDENED_RUNTIME: NO
+
+  EmdashChatTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: EmdashChatTests
+        createIntermediateGroups: true
+    dependencies:
+      - target: EmdashChat
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryan.emdashchattests
+        SWIFT_VERSION: "5.9"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        GENERATE_INFOPLIST_FILE: YES

@@ -21,9 +21,11 @@
 		4E676D74F20C086AD7F509C5 /* AnimatedGIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF206C8285375945C0C441 /* AnimatedGIFView.swift */; };
 		52DAD369D1E18E2D9D50A7C4 /* GiphyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E312FF07F2E6B8E7DE9E9B3 /* GiphyService.swift */; };
 		532FCBEFD59731F5D0E87B6A /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BAB09756D29FF8501CA38D /* MessageBubbleView.swift */; };
+		54BC4EF97F33367CC364D632 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676F84B868EE38F81B4B14D /* ModelTests.swift */; };
 		63BDBB996B203A434F050865 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F043E55A4969A5D68DA9F79 /* SyncManager.swift */; };
 		6A3AE4614E7E5FE704EFAA60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFC88AF9C6429B1537D3811 /* LoginView.swift */; };
 		71E34B94D844B6F4E3027C87 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA020B8DCA81A1A71B0FEF30 /* ChatViewModel.swift */; };
+		8F85557C5C2D34AD6217513F /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6D55A43E19BFB56213960C /* ThemeTests.swift */; };
 		92E1820F4B81B64A66D880C3 /* RoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54671EF1E87BA682C51104AF /* RoomListViewModel.swift */; };
 		93DD177386BCD24A1D219D90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185F83D31D3EDC8115336AC0 /* Assets.xcassets */; };
 		9FD5754A300E8305E64F1084 /* MatrixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4C852E879BFC67E2CB661 /* MatrixUser.swift */; };
@@ -38,7 +40,18 @@
 		F1DBE933F8EE614A9B90539E /* EmdashChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C232F490EAC82C61BDE4F /* EmdashChatApp.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E206199D39B7AE0807582E4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CFFEB8CE95EFFF17E8344F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 474ACC0D3F3E4A5EB4694B21;
+			remoteInfo = EmdashChat;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0FFFC196B56B95F64B9D35AF /* EmdashChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmdashChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185F83D31D3EDC8115336AC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E312FF07F2E6B8E7DE9E9B3 /* GiphyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyService.swift; sourceTree = "<group>"; };
 		25311F0B9E5B67086F59C450 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -47,6 +60,7 @@
 		2F043E55A4969A5D68DA9F79 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		34CCD8F3F4A7F4E96F5CF4FB /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		447C222508A5E8639982D61C /* EmdashChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmdashChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4676F84B868EE38F81B4B14D /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		54671EF1E87BA682C51104AF /* RoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListViewModel.swift; sourceTree = "<group>"; };
 		59FDFEF4B12EFA5C7D17C4EC /* GIFGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFGridItemView.swift; sourceTree = "<group>"; };
 		5B287EF9B1B973D04097D9EA /* GIFProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFProvider.swift; sourceTree = "<group>"; };
@@ -59,6 +73,7 @@
 		B2BEB22C2E4F143AB88307B3 /* ComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerView.swift; sourceTree = "<group>"; };
 		B2F4C852E879BFC67E2CB661 /* MatrixUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUser.swift; sourceTree = "<group>"; };
 		B7A4DAEC994070683F11B2EE /* RoomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRowView.swift; sourceTree = "<group>"; };
+		BE6D55A43E19BFB56213960C /* ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		C3580055DE72D2A6622D759D /* EmdashChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmdashChat.entitlements; sourceTree = "<group>"; };
 		C55A398DF2DDED76B193CC10 /* KlipyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlipyService.swift; sourceTree = "<group>"; };
 		CE4BD220CBB76443F4F80049 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -99,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				375A7D13064A5C708C3565A4 /* EmdashChat */,
+				779866234927593DE79E34B4 /* EmdashChatTests */,
 				AC98D5C91CEAF4FEE266CF66 /* Products */,
 			);
 			indentWidth = 4;
@@ -177,6 +193,15 @@
 			path = GIF;
 			sourceTree = "<group>";
 		};
+		779866234927593DE79E34B4 /* EmdashChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				4676F84B868EE38F81B4B14D /* ModelTests.swift */,
+				BE6D55A43E19BFB56213960C /* ThemeTests.swift */,
+			);
+			path = EmdashChatTests;
+			sourceTree = "<group>";
+		};
 		A5ECD8572AAB9E11DDC3C688 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				447C222508A5E8639982D61C /* EmdashChat.app */,
+				0FFFC196B56B95F64B9D35AF /* EmdashChatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,6 +254,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		32EB8911AC5A0D9E77D5F3EB /* EmdashChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B73BCA84E6389773F7DF60E /* Build configuration list for PBXNativeTarget "EmdashChatTests" */;
+			buildPhases = (
+				D545AA42D05C9E59E335196C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C01116318D67AC987F029BB6 /* PBXTargetDependency */,
+			);
+			name = EmdashChatTests;
+			packageProductDependencies = (
+			);
+			productName = EmdashChatTests;
+			productReference = 0FFFC196B56B95F64B9D35AF /* EmdashChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		474ACC0D3F3E4A5EB4694B21 /* EmdashChat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F7D19612E81DD4539DBBAD7 /* Build configuration list for PBXNativeTarget "EmdashChat" */;
@@ -256,9 +300,10 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 6909C79A967B9AA3DFD439C0 /* Build configuration list for PBXProject "EmdashChat" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -275,6 +320,7 @@
 			projectRoot = "";
 			targets = (
 				474ACC0D3F3E4A5EB4694B21 /* EmdashChat */,
+				32EB8911AC5A0D9E77D5F3EB /* EmdashChatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -325,7 +371,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D545AA42D05C9E59E335196C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54BC4EF97F33367CC364D632 /* ModelTests.swift in Sources */,
+				8F85557C5C2D34AD6217513F /* ThemeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C01116318D67AC987F029BB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 474ACC0D3F3E4A5EB4694B21 /* EmdashChat */;
+			targetProxy = E206199D39B7AE0807582E4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		09489356B6FBDA8035297C42 /* Release */ = {
@@ -407,6 +470,25 @@
 				SWIFT_VERSION = 5.9;
 			};
 			name = Release;
+		};
+		6C6AA80281E7EE7F41C50513 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.emdashchattests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmdashChat.app/Contents/MacOS/EmdashChat";
+			};
+			name = Debug;
 		};
 		8621B84BCBD65C5ABA510BEE /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -495,6 +577,25 @@
 			};
 			name = Debug;
 		};
+		DFD8F6670FA03527D785D7D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.emdashchattests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmdashChat.app/Contents/MacOS/EmdashChat";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -512,6 +613,15 @@
 			buildConfigurations = (
 				BA8AC1AA68354BDD2B806EBF /* Debug */,
 				09489356B6FBDA8035297C42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7B73BCA84E6389773F7DF60E /* Build configuration list for PBXNativeTarget "EmdashChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C6AA80281E7EE7F41C50513 /* Debug */,
+				DFD8F6670FA03527D785D7D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
