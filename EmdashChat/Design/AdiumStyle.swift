@@ -7,10 +7,10 @@ import KeyboardShortcuts
 // via Settings → Keyboard. Defaults match the plan spec.
 
 extension KeyboardShortcuts.Name {
-    static let roomSearch    = Self("roomSearch",    default: .init(.k, modifiers: .command))
-    static let newDM         = Self("newDM",         default: .init(.n, modifiers: .command))
-    static let previousRoom  = Self("previousRoom",  default: .init(.leftBracket,  modifiers: .command))
-    static let nextRoom      = Self("nextRoom",       default: .init(.rightBracket, modifiers: .command))
+    static let roomSearch    = Self("roomSearch", default: .init(.k, modifiers: .command))
+    static let newDM         = Self("newDM", default: .init(.n, modifiers: .command))
+    static let previousRoom  = Self("previousRoom", default: .init(.leftBracket, modifiers: .command))
+    static let nextRoom      = Self("nextRoom", default: .init(.rightBracket, modifiers: .command))
 }
 
 // MARK: - Adium-style visual constants
@@ -27,12 +27,12 @@ enum AdiumStyle {
 
     /// Avatar letter gradient pairs (top, bottom)
     static let avatarGradients: [(Color, Color)] = [
-        (.blue,   Color(red: 0.1, green: 0.3, blue: 0.9)),
+        (.blue, Color(red: 0.1, green: 0.3, blue: 0.9)),
         (.purple, Color(red: 0.5, green: 0.1, blue: 0.8)),
-        (.green,  Color(red: 0.1, green: 0.6, blue: 0.3)),
+        (.green, Color(red: 0.1, green: 0.6, blue: 0.3)),
         (.orange, Color(red: 0.9, green: 0.5, blue: 0.1)),
-        (.pink,   Color(red: 0.9, green: 0.3, blue: 0.5)),
-        (.teal,   Color(red: 0.1, green: 0.6, blue: 0.7)),
+        (.pink, Color(red: 0.9, green: 0.3, blue: 0.5)),
+        (.teal, Color(red: 0.1, green: 0.6, blue: 0.7)),
     ]
 
     static func avatarGradient(for string: String) -> LinearGradient {

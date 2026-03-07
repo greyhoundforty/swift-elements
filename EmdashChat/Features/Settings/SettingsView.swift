@@ -218,7 +218,7 @@ struct GIFSettingsView: View {
 
     // MARK: - Test
 
-    private func testAPIKey() async {
+    func testAPIKey() async {
         isTesting = true
         testResult = nil
         let service: any GIFProvider = providerType == .giphy

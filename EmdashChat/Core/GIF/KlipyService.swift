@@ -38,10 +38,10 @@ struct KlipyService: GIFProvider {
     private func buildURL(path: String, extra: [String: String], limit: Int) throws -> URL {
         var comps = URLComponents(string: "\(Self.base)/\(path)")!
         var items: [URLQueryItem] = [
-            .init(name: "key",          value: apiKey),
-            .init(name: "limit",        value: "\(limit)"),
+            .init(name: "key", value: apiKey),
+            .init(name: "limit", value: "\(limit)"),
             .init(name: "media_filter", value: "gif,nanogif"),  // 70% smaller payload
-            .init(name: "contentfilter",value: "medium"),
+            .init(name: "contentfilter", value: "medium"),
         ]
         items += extra.map { URLQueryItem(name: $0.key, value: $0.value) }
         comps.queryItems = items
