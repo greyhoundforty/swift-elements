@@ -50,7 +50,7 @@ struct RoomListView: View {
                 .environment(matrixClient)
         }
         .task {
-            await matrixClient.restoreSession()
+            try? await matrixClient.restoreSession()
         }
     }
 

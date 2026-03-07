@@ -11,7 +11,7 @@ struct MessageListView: View {
     let messages: [Message]
     let isLoadingHistory: Bool
     let onScrollToTop: () async -> Void
-    var onReply: ((Message) -> Void)? = nil
+    var onReply: ((Message) -> Void)?
 
     @State private var scrollOffset: CGFloat = 0
     @State private var contentHeight: CGFloat = 0

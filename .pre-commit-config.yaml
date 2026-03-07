@@ -1,0 +1,26 @@
+repos:
+  # Secret / credential detection
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+
+  # General hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+  # SwiftLint
+  - repo: local
+    hooks:
+      - id: swiftlint
+        name: SwiftLint
+        entry: swiftlint lint --force-exclude --quiet
+        language: system
+        types: [swift]
+        pass_filenames: false

@@ -24,6 +24,14 @@ struct EmdashChatApp: App {
         }
         .defaultSize(width: AdiumStyle.chatDefaultWidth, height: AdiumStyle.chatDefaultHeight)
 
+        // Debug window — open via Window menu
+        Window("Debug", id: "debug") {
+            DebugView()
+                .environment(matrixClient)
+        }
+        .defaultSize(width: 520, height: 360)
+        .defaultPosition(.bottomLeading)
+
         // Settings (Cmd+,)
         Settings {
             SettingsView()

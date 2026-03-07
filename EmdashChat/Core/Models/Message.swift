@@ -17,7 +17,7 @@ struct Message: Identifiable, Hashable {
     let content: MessageContent
     let timestamp: Date
     var isFromCurrentUser: Bool = false
-    var replyTo: MessageReply? = nil   // set when this is a reply
+    var replyTo: MessageReply?   // set when this is a reply
 
     /// Whether this message was sent within 5 min of `previous` by the same sender
     /// and neither has a reply header (which always breaks grouping visually).

@@ -1,212 +1,245 @@
 import Foundation
+import os
+import MatrixRustSDK
+
+private let log = Logger(subsystem: "com.ryan.emdashchat", category: "SyncManager")
 
 // MARK: - SyncManager
-//
-// Manages the Matrix sync lifecycle. In production this wraps MatrixRustSDK's
-// SlidingSync API. Currently uses mock data to enable UI development.
-//
-// Integration points marked with TODO: MatrixRustSDK
 
 @MainActor
 final class SyncManager {
-    private weak var client: MatrixClient?
-    private var syncTask: Task<Void, Never>?
+    private weak var matrixClient: MatrixClient?
 
-    init(client: MatrixClient) {
-        self.client = client
+    private(set) var syncService: SyncService?
+    private var roomList: RoomList?
+    private var roomListEntriesResult: RoomListEntriesWithDynamicAdaptersResult?
+    private var roomListController: RoomListDynamicEntriesController?
+    private var roomListEntriesStreamHandle: TaskHandle?
+    private var syncTask: Task<Void, Never>?
+    private var syncStateHandle: TaskHandle?
+    private var loadingStateResult: RoomListLoadingStateResult?
+
+    init(matrixClient: MatrixClient) {
+        self.matrixClient = matrixClient
     }
 
-    func start() async {
-        // TODO: MatrixRustSDK — initialize ClientBuilder and SlidingSync
-        // Example (requires real SDK):
-        //   let sdkClient = try await ClientBuilder()
-        //       .homeserverUrl(url: client.session?.homeserver ?? "")
-        //       .build()
-        //   let slidingSync = try await sdkClient.slidingSync(id: "main")
-        //   ...
+    func start(client: Client) async {
+        let ssv = client.slidingSyncVersion()
+        let ssvDesc: String
+        switch ssv {
+        case .none:             ssvDesc = "none"
+        case .native:           ssvDesc = "native"
+        case .proxy(let url):   ssvDesc = "proxy(\(url))"
+        }
+        log.info("start: slidingSyncVersion=\(ssvDesc, privacy: .public)")
 
-        // Populate with mock data for UI development
-        populateMockRooms()
+        do {
+            let svc = try await client.syncService().finish()
+            syncService = svc
+            log.info("start: sync service built, fetching room list")
 
-        // Background polling loop (replace with SDK event stream)
+            let list = try await svc.roomListService().allRooms()
+            roomList = list
+            log.info("start: room list obtained, subscribing to updates")
+
+            roomListEntriesResult = list.entriesWithDynamicAdapters(pageSize: 50, listener: self)
+            roomListController = roomListEntriesResult?.controller()
+            roomListEntriesStreamHandle = roomListEntriesResult?.entriesStream()
+            loadingStateResult = try? list.loadingState(listener: self)
+            log.info("start: initial loadingState=\(self.loadingStateDesc(self.loadingStateResult?.state), privacy: .public)")
+            syncStateHandle = svc.state(listener: self)
+
+            // Trigger the first page of rooms from the dynamic adapter.
+            roomListController?.addOnePage()
+            log.info("start: addOnePage called")
+
+            syncTask = Task { [weak self] in
+                log.info("start: sync loop running")
+                await svc.start()
+                log.info("start: sync loop exited")
+                _ = self
+            }
+        } catch {
+            log.error("start: SyncService unavailable (\(error, privacy: .public)) — falling back to direct room polling")
+            startPollingFallback(client: client)
+        }
+    }
+
+    // MARK: - Polling fallback (servers without sliding sync)
+
+    private func startPollingFallback(client: Client) {
+        log.info("polling: starting direct room poll every 30s")
         syncTask = Task { [weak self] in
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(30))
-                // TODO: process sliding sync response from SDK
+                let sdkRooms = client.rooms()
+                log.info("polling: \(sdkRooms.count, privacy: .public) room(s)")
+                await MainActor.run { [weak self] in
+                    guard let self, let mc = self.matrixClient else { return }
+                    mc.updateRooms(sdkRooms.map { Room(sdkRoom: $0) })
+                    mc.updateSdkRooms(Dictionary(uniqueKeysWithValues: sdkRooms.map { ($0.id(), $0) }))
+                }
+                do { try await Task.sleep(for: .seconds(30)) } catch { break }
             }
         }
     }
 
     func stop() async {
         syncTask?.cancel()
+        syncStateHandle?.cancel()
+        syncStateHandle = nil
+        roomListEntriesStreamHandle?.cancel()
+        roomListEntriesStreamHandle = nil
+        loadingStateResult = nil
+        roomListController = nil
+        roomListEntriesResult = nil
+        roomList = nil
+        try? await syncService?.stop()
+        syncService = nil
         syncTask = nil
     }
 
-    // MARK: - Mock data
-
-    private func populateMockRooms() {
-        let alice = MatrixUser(id: "@alice:matrix.org", displayName: "Alice")
-        let bob = MatrixUser(id: "@bob:matrix.org", displayName: "Bob")
-
-        let mockDM = Room(
-            id: "!dm-alice:matrix.org",
-            name: "Alice",
-            unreadCount: 2,
-            lastMessage: Message(
-                id: "$evt1:matrix.org",
-                roomId: "!dm-alice:matrix.org",
-                sender: alice,
-                content: .text("Hey, are you there?"),
-                timestamp: Date().addingTimeInterval(-120)
-            ),
-            isDM: true,
-            members: [alice]
-        )
-
-        let mockGeneral = Room(
-            id: "!general:matrix.org",
-            name: "General",
-            unreadCount: 5,
-            lastMessage: Message(
-                id: "$evt2:matrix.org",
-                roomId: "!general:matrix.org",
-                sender: bob,
-                content: .text("Welcome to EmdashChat!"),
-                timestamp: Date().addingTimeInterval(-600)
-            ),
-            isDM: false,
-            members: [alice, bob]
-        )
-
-        let mockRandom = Room(
-            id: "!random:matrix.org",
-            name: "Random",
-            unreadCount: 0,
-            isDM: false,
-            members: [bob]
-        )
-
-        client?.updateRooms([mockDM, mockGeneral, mockRandom])
-    }
-}
-
-// MARK: - Mock message timeline
-
-extension SyncManager {
-    /// Returns a rich mock timeline for a given room — replace with real SDK pagination.
-    static func mockMessages(for roomId: String, currentUserId: String) -> [Message] {
-        let alice   = MatrixUser(id: "@alice:matrix.org",   displayName: "Alice")
-        let bob     = MatrixUser(id: "@bob:matrix.org",     displayName: "Bob")
-        let charlie = MatrixUser(id: "@charlie:matrix.org", displayName: "Charlie")
-        let me      = MatrixUser(id: currentUserId,         displayName: "Me")
-
-        switch roomId {
-        case "!dm-alice:matrix.org":
-            return [
-                Message(id: "$m1", roomId: roomId, sender: alice,
-                        content: .text("Hey! Have you tried the new EmdashChat build?"),
-                        timestamp: .now - 900),
-                Message(id: "$m2", roomId: roomId, sender: me,
-                        content: .text("Just fired it up — looks great so far 🎉"),
-                        timestamp: .now - 840, isFromCurrentUser: true),
-                Message(id: "$m3", roomId: roomId, sender: alice,
-                        content: .text("Did the GIF picker work?"),
-                        timestamp: .now - 800),
-                Message(id: "$m4", roomId: roomId, sender: me,
-                        content: .text("Yeah! Type /gif and it pops right up."),
-                        timestamp: .now - 760, isFromCurrentUser: true,
-                        replyTo: MessageReply(eventId: "$m3", senderName: "Alice",
-                                              preview: "Did the GIF picker work?")),
-                Message(id: "$m5", roomId: roomId, sender: alice,
-                        content: .text("Nice. Are you testing the reply feature too?"),
-                        timestamp: .now - 600),
-                Message(id: "$m6", roomId: roomId, sender: alice,
-                        content: .text("Right-click any message to try it 👆"),
-                        timestamp: .now - 580),
-                Message(id: "$m7", roomId: roomId, sender: me,
-                        content: .text("Yep, doing that right now!"),
-                        timestamp: .now - 200, isFromCurrentUser: true,
-                        replyTo: MessageReply(eventId: "$m5", senderName: "Alice",
-                                              preview: "Are you testing the reply feature too?")),
-            ]
-
-        case "!general:matrix.org":
-            return [
-                Message(id: "$g1", roomId: roomId, sender: alice,
-                        content: .text("Welcome to #general everyone 👋"),
-                        timestamp: .now - 7200),
-                Message(id: "$g2", roomId: roomId, sender: bob,
-                        content: .text("Thanks Alice! Glad to be here."),
-                        timestamp: .now - 7100,
-                        replyTo: MessageReply(eventId: "$g1", senderName: "Alice",
-                                              preview: "Welcome to #general everyone 👋")),
-                Message(id: "$g3", roomId: roomId, sender: charlie,
-                        content: .text("Same here. This app already feels way better than Electron."),
-                        timestamp: .now - 6800),
-                Message(id: "$g4", roomId: roomId, sender: me,
-                        content: .text("Ha, that was the whole point 😄"),
-                        timestamp: .now - 6500, isFromCurrentUser: true),
-                Message(id: "$g5", roomId: roomId, sender: bob,
-                        content: .text("What's next on the roadmap?"),
-                        timestamp: .now - 3600),
-                Message(id: "$g6", roomId: roomId, sender: me,
-                        content: .text("AT Protocol support is being researched right now actually!"),
-                        timestamp: .now - 3400, isFromCurrentUser: true,
-                        replyTo: MessageReply(eventId: "$g5", senderName: "Bob",
-                                              preview: "What's next on the roadmap?")),
-                Message(id: "$g7", roomId: roomId, sender: charlie,
-                        content: .text("Bluesky integration would be 🔥"),
-                        timestamp: .now - 3300,
-                        replyTo: MessageReply(eventId: "$g6", senderName: "Me",
-                                              preview: "AT Protocol support is being researched right now actually!")),
-                Message(id: "$g8", roomId: roomId, sender: alice,
-                        content: .text("Also loving the bubble color options in Settings"),
-                        timestamp: .now - 600),
-            ]
-
-        case "!random:matrix.org":
-            return [
-                Message(id: "$r1", roomId: roomId, sender: bob,
-                        content: .text("Anyone have good macOS app recommendations?"),
-                        timestamp: .now - 1800),
-                Message(id: "$r2", roomId: roomId, sender: charlie,
-                        content: .text("EmdashChat obviously 😂"),
-                        timestamp: .now - 1700,
-                        replyTo: MessageReply(eventId: "$r1", senderName: "Bob",
-                                              preview: "Anyone have good macOS app recommendations?")),
-                Message(id: "$r3", roomId: roomId, sender: me,
-                        content: .text("I walked right into that one"),
-                        timestamp: .now - 1600, isFromCurrentUser: true),
-            ]
-
-        default:
-            return []
+    private func loadingStateDesc(_ state: RoomListLoadingState?) -> String {
+        switch state {
+        case .none:                               return "nil"
+        case .notLoaded:                          return "notLoaded"
+        case .loaded(let n): return "loaded(max=\(n.map { "\($0)" } ?? "nil"))"
         }
     }
 
-    // MARK: - Simulated responses (for interactive testing)
+    // MARK: - Room list diff application (sliding sync path)
+
+    private func applyDiff(_ diffs: [RoomListEntriesUpdate]) {
+        guard let matrixClient else { return }
+        log.info("applyDiff: \(diffs.count, privacy: .public) update(s)")
+        var rooms = matrixClient.rooms
+
+        for diff in diffs {
+            switch diff {
+            case .append(let items):
+                rooms.append(contentsOf: items.map(Room.init(roomListItem:)))
+            case .pushBack(let item):
+                rooms.append(Room(roomListItem: item))
+            case .pushFront(let item):
+                rooms.insert(Room(roomListItem: item), at: 0)
+            case .set(let index, let item):
+                let i = Int(index)
+                if rooms.indices.contains(i) { rooms[i] = Room(roomListItem: item) }
+            case .remove(let index):
+                let i = Int(index)
+                if rooms.indices.contains(i) { rooms.remove(at: i) }
+            case .reset(let items):
+                rooms = items.map(Room.init(roomListItem:))
+            case .insert(let index, let item):
+                rooms.insert(Room(roomListItem: item), at: min(Int(index), rooms.count))
+            case .clear:
+                rooms = []
+            case .popBack:
+                if !rooms.isEmpty { rooms.removeLast() }
+            case .popFront:
+                if !rooms.isEmpty { rooms.removeFirst() }
+            case .truncate(let length):
+                rooms = Array(rooms.prefix(Int(length)))
+            }
+        }
+
+        log.info("applyDiff: room count=\(rooms.count, privacy: .public)")
+        matrixClient.updateRooms(rooms)
+    }
+}
+
+// MARK: - RoomListLoadingStateListener
+
+extension SyncManager: RoomListLoadingStateListener {
+    nonisolated func onUpdate(state: RoomListLoadingState) {
+        let desc: String
+        switch state {
+        case .notLoaded:     desc = "notLoaded"
+        case .loaded(let n): desc = "loaded(max=\(n.map { "\($0)" } ?? "nil"))"
+        }
+        log.info("roomList loadingState → \(desc, privacy: .public)")
+        Task { @MainActor [weak self] in
+            self?.matrixClient?.appendDebug("loadingState → \(desc)")
+        }
+    }
+}
+
+// MARK: - SyncServiceStateObserver
+
+extension SyncManager: SyncServiceStateObserver {
+    nonisolated func onUpdate(state: SyncServiceState) {
+        let desc: String
+        switch state {
+        case .idle:        desc = "idle"
+        case .running:     desc = "running"
+        case .terminated:  desc = "terminated"
+        case .error:       desc = "error"
+        }
+        log.info("syncService state → \(desc, privacy: .public)")
+        Task { @MainActor [weak self] in
+            self?.matrixClient?.updateSyncState(desc)
+        }
+    }
+}
+
+// MARK: - RoomListEntriesListener
+
+extension SyncManager: RoomListEntriesListener {
+    nonisolated func onUpdate(roomEntriesUpdate: [RoomListEntriesUpdate]) {
+        log.info("roomList onUpdate: \(roomEntriesUpdate.count, privacy: .public) update(s)")
+        Task { @MainActor [weak self] in
+            self?.matrixClient?.appendDebug("roomList: \(roomEntriesUpdate.count) diff(s)")
+            self?.applyDiff(roomEntriesUpdate)
+        }
+    }
+}
+
+// MARK: - Room mapping
+
+extension Room {
+    /// From a sliding-sync RoomListItem.
+    init(roomListItem item: RoomListItem) {
+        self.init(
+            id: item.id(),
+            name: item.displayName() ?? item.id(),
+            isDM: item.isDirect()
+        )
+    }
+
+    /// From a direct SDK Room (polling fallback path).
+    init(sdkRoom room: MatrixRustSDK.Room) {
+        self.init(
+            id: room.id(),
+            name: room.displayName() ?? room.id(),
+            topic: room.topic(),
+            isDM: room.isDirect()
+        )
+    }
+}
+
+// MARK: - Mock fallback (offline / simulator)
+
+extension SyncManager {
+    static func mockMessages(for roomId: String, currentUserId: String) -> [Message] {
+        let alice = MatrixUser(id: "@alice:matrix.org", displayName: "Alice")
+        let me    = MatrixUser(id: currentUserId, displayName: "Me")
+        guard roomId == "!dm-alice:matrix.org" else { return [] }
+        return [
+            Message(id: "$m1", roomId: roomId, sender: alice,
+                    content: .text("Hey! Have you tried the new EmdashChat build?"),
+                    timestamp: .now - 900),
+            Message(id: "$m2", roomId: roomId, sender: me,
+                    content: .text("Just fired it up — looks great so far!"),
+                    timestamp: .now - 840, isFromCurrentUser: true),
+        ]
+    }
 
     static let simulatedUsers = [
-        MatrixUser(id: "@alice:matrix.org",   displayName: "Alice"),
-        MatrixUser(id: "@bob:matrix.org",     displayName: "Bob"),
-        MatrixUser(id: "@charlie:matrix.org", displayName: "Charlie"),
+        MatrixUser(id: "@alice:matrix.org", displayName: "Alice"),
+        MatrixUser(id: "@bob:matrix.org", displayName: "Bob"),
     ]
 
     static let simulatedLines = [
-        "That's a great point!",
-        "Totally agree 👍",
-        "Interesting, tell me more",
-        "LOL 😄",
-        "I was thinking the same thing",
-        "Can you elaborate on that?",
-        "Good to know!",
-        "Thanks for sharing",
-        "Makes sense to me",
-        "Wait, really? 👀",
-        "On it!",
-        "Has anyone else noticed that?",
-        "That's wild",
-        "Yep, same here",
-        "Love that idea ✨",
+        "That's a great point!", "Totally agree", "Interesting, tell me more",
+        "Good to know!", "Makes sense to me",
     ]
 }
