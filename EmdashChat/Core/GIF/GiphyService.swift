@@ -16,9 +16,9 @@ struct GiphyService: GIFProvider {
     func search(_ query: String, limit: Int = 9, offset: Int = 0) async throws -> [GIFResult] {
         guard !apiKey.isEmpty else { throw GIFError.missingAPIKey }
         let url = try buildURL(path: "search", extra: [
-            "q":      query,
+            "q": query,
             "offset": "\(offset)",
-            "lang":   "en",
+            "lang": "en",
         ], limit: limit)
         let response: GiphyResponse = try await URLSession.shared.fetchJSON(url)
         return response.data.compactMap(\.gifResult)
@@ -37,8 +37,8 @@ struct GiphyService: GIFProvider {
         var comps = URLComponents(string: "\(Self.base)/\(path)")!
         var items: [URLQueryItem] = [
             .init(name: "api_key", value: apiKey),
-            .init(name: "limit",   value: "\(limit)"),
-            .init(name: "rating",  value: "g"),
+            .init(name: "limit", value: "\(limit)"),
+            .init(name: "rating", value: "g"),
         ]
         items += extra.map { URLQueryItem(name: $0.key, value: $0.value) }
         comps.queryItems = items
