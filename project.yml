@@ -12,24 +12,32 @@ packages:
   KeyboardShortcuts:
     url: https://github.com/sindresorhus/KeyboardShortcuts
     from: "2.0.0"
-  # Uncomment when ready to integrate the real Matrix SDK (~200MB binary download):
-  # MatrixRustSDK:
-  #   url: https://github.com/matrix-org/matrix-rust-components-swift
-  #   from: "1.0.0"
+  MatrixRustSDK:
+    url: https://github.com/matrix-org/matrix-rust-components-swift
+    from: "1.0.0"
 
 targets:
   EmdashChat:
     type: application
     platform: macOS
     deploymentTarget: "14.0"
+    preBuildScripts:
+      - name: SwiftLint
+        script: |
+          if which swiftlint > /dev/null; then
+            swiftlint lint --force-exclude
+          else
+            echo "warning: SwiftLint not installed — run: brew install swiftlint"
+          fi
+        basedOnDependencyAnalysis: false
     sources:
       - path: EmdashChat
         createIntermediateGroups: true
     dependencies:
       - package: KeyboardShortcuts
         product: KeyboardShortcuts
-      # - package: MatrixRustSDK
-      #   product: MatrixRustSDK
+      - package: MatrixRustSDK
+        product: MatrixRustSDK
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.ryan.emdashchat

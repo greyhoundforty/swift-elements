@@ -4,7 +4,7 @@ struct ComposerView: View {
     @Binding var text: String
     @Binding var replyingTo: MessageReply?
     let onSend: () -> Void
-    var onSendGIF: ((GIFResult) -> Void)? = nil
+    var onSendGIF: ((GIFResult) -> Void)?
 
     @FocusState private var isFocused: Bool
     @State private var showGIFPicker = false
@@ -112,7 +112,7 @@ struct ComposerView: View {
                         lineWidth: 1
                     )
             )
-            .onChange(of: text) { _, newText in
+            .onChange(of: text) { _, _ in
                 showGIFPicker = gifQuery != nil
             }
             .popover(isPresented: $showGIFPicker, arrowEdge: .top) {

@@ -34,6 +34,8 @@
 		B27BECFF329FDCCDBE98B970 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25311F0B9E5B67086F59C450 /* Message.swift */; };
 		BF0DB063616FF5CCD117AB3D /* GIFGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FDFEF4B12EFA5C7D17C4EC /* GIFGridItemView.swift */; };
 		C07BF68240485A5D90421FAB /* AdiumStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47A594CC6ADF5EF54ABEF5A /* AdiumStyle.swift */; };
+		C4BDDE73EF3840CF321BF31B /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381B93204CCD89056FE9C6D /* DebugView.swift */; };
+		C4CC2740235A9E90C7FC5A2A /* MatrixRustSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 932C145551E4FD0A00CDBB21 /* MatrixRustSDK */; };
 		E2D34717E513D2F4BED6B4BA /* GIFPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E34F99B578D215BB09E5577 /* GIFPickerView.swift */; };
 		E53E2B94D33601A8BA9992C4 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE97FBD71AE4E243719A802B /* Room.swift */; };
 		E7F756591D73E054E5710ED3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BD220CBB76443F4F80049 /* LoginViewModel.swift */; };
@@ -77,6 +79,7 @@
 		C3580055DE72D2A6622D759D /* EmdashChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmdashChat.entitlements; sourceTree = "<group>"; };
 		C55A398DF2DDED76B193CC10 /* KlipyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlipyService.swift; sourceTree = "<group>"; };
 		CE4BD220CBB76443F4F80049 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D381B93204CCD89056FE9C6D /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D63C232F490EAC82C61BDE4F /* EmdashChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmdashChatApp.swift; sourceTree = "<group>"; };
 		E1F4A8A1A7A8D221FF99E8DD /* BubbleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTheme.swift; sourceTree = "<group>"; };
 		E9B7D7570E9FA33158DA5F6A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44F29D967DC0D78761251F84 /* KeyboardShortcuts in Frameworks */,
+				C4CC2740235A9E90C7FC5A2A /* MatrixRustSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				AE3F8A40090CB49D2BE0BD95 /* Chat */,
+				C1F701B7B95B77241F114116 /* Debug */,
 				76F79856A997255480714B45 /* GIF */,
 				7309518A64AC04418D8153E2 /* Login */,
 				A80991023279C19BB1FA82B6 /* RoomList */,
@@ -251,6 +256,14 @@
 			path = Design;
 			sourceTree = "<group>";
 		};
+		C1F701B7B95B77241F114116 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				D381B93204CCD89056FE9C6D /* DebugView.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,6 +289,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F7D19612E81DD4539DBBAD7 /* Build configuration list for PBXNativeTarget "EmdashChat" */;
 			buildPhases = (
+				CF36F8E1AAB1601BDE096D8A /* SwiftLint */,
 				C4A231625BBE3C3F763E39BC /* Sources */,
 				B0DCFC76D3A6AC2AC3CBB505 /* Resources */,
 				2497C964D93D559B094D1046 /* Frameworks */,
@@ -287,6 +301,7 @@
 			name = EmdashChat;
 			packageProductDependencies = (
 				A535D47EB793465F51A925DB /* KeyboardShortcuts */,
+				932C145551E4FD0A00CDBB21 /* MatrixRustSDK */,
 			);
 			productName = EmdashChat;
 			productReference = 447C222508A5E8639982D61C /* EmdashChat.app */;
@@ -314,6 +329,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E766E9B7FF3F5BD15B8F3356 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				27C116544EE16DA55C809CB3 /* XCRemoteSwiftPackageReference "matrix-rust-components-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
@@ -336,6 +352,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CF36F8E1AAB1601BDE096D8A /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint lint --force-exclude\nelse\n  echo \"warning: SwiftLint not installed — run: brew install swiftlint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C4A231625BBE3C3F763E39BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -348,6 +386,7 @@
 				A34DD08DECFE3363EBEA74BF /* ChatView.swift in Sources */,
 				71E34B94D844B6F4E3027C87 /* ChatViewModel.swift in Sources */,
 				2D5A62362EE8CB0A44DD86EF /* ComposerView.swift in Sources */,
+				C4BDDE73EF3840CF321BF31B /* DebugView.swift in Sources */,
 				F1DBE933F8EE614A9B90539E /* EmdashChatApp.swift in Sources */,
 				BF0DB063616FF5CCD117AB3D /* GIFGridItemView.swift in Sources */,
 				E2D34717E513D2F4BED6B4BA /* GIFPickerView.swift in Sources */,
@@ -629,6 +668,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		27C116544EE16DA55C809CB3 /* XCRemoteSwiftPackageReference "matrix-rust-components-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matrix-org/matrix-rust-components-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		E766E9B7FF3F5BD15B8F3356 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
@@ -640,6 +687,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		932C145551E4FD0A00CDBB21 /* MatrixRustSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27C116544EE16DA55C809CB3 /* XCRemoteSwiftPackageReference "matrix-rust-components-swift" */;
+			productName = MatrixRustSDK;
+		};
 		A535D47EB793465F51A925DB /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E766E9B7FF3F5BD15B8F3356 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;

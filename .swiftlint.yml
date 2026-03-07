@@ -1,0 +1,58 @@
+opt_in_rules:
+  - force_unwrapping
+  - force_try
+  - implicitly_unwrapped_optional
+  - redundant_string_enum_value
+
+disabled_rules:
+  - trailing_comma
+  - todo
+
+excluded:
+  - EmdashChat.xcodeproj
+  - EmdashChatTests
+  - DerivedData
+  - .build
+
+line_length:
+  warning: 160
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+function_body_length:
+  warning: 80
+  error: 120
+
+type_body_length:
+  warning: 400
+  error: 600
+
+file_length:
+  warning: 500
+  error: 800
+
+# Timeline diff handlers and switch-heavy functions are intentionally complex
+cyclomatic_complexity:
+  warning: 15
+  error: 30
+
+identifier_name:
+  min_length: 2
+  excluded:
+    - id
+    - mc
+    - ok
+    - t
+    - e
+    - s
+    - h
+    - n
+
+# Flag print() calls via custom rule (no built-in rule exists)
+custom_rules:
+  no_print:
+    name: "No print() calls"
+    regex: '^\s*print\('
+    message: "Use os.Logger instead of print() to avoid leaking data to console logs."
+    severity: warning
